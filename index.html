@@ -3,166 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sugerencias y Mejoras | Alegra</title>
-    <!-- Tipografía Oficial Inter -->
+    <title>Alegra - Co-creación Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS para la estructura mas limpia -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         :root {
-            --alegra-primary: #00D6BC;      /* Verde Menta / Turquesa Principal */
-            --alegra-hover: #00BFA8;        /* Hover del botón principal */
-            --alegra-sec-light: #CFF2F1;    /* Fondo claro de elementos activos */
-            --alegra-sec-medium: #1A7E7F;   /* Botones secundarios y textos de acento */
-            --alegra-sec-dark: #00535E;     /* Texto principal y títulos de tarjetas */
-            --alegra-sec-deep: #001E3B;     /* Encabezados y UI estructural */
-            --alegra-bg: #F8FAFC;           /* Fondo gris ultra limpio y moderno */
+            --alegra-primary: #30bbb7;        /* Teal Oficial */
+            --alegra-hover: #299e9c;          /* Hover 700 */
+            --alegra-active: #208d8d;         /* Active 800 */
+            --alegra-subtle: #cff2f1;         /* Variante sutil 100 */
+            --alegra-bg: #f1f5f9;             /* Fondo page */
+            --alegra-text-dark: #0f172a;      /* Slate 900 */
+            --alegra-text-muted: #64748b;     /* Slate 500 */
         }
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--alegra-bg);
-            color: var(--alegra-sec-dark);
+            color: var(--alegra-text-dark);
         }
         .bg-alegra { background-color: var(--alegra-primary); }
-        .text-alegra { color: var(--alegra-sec-medium); }
-        .hover-alegra:hover { background-color: var(--alegra-hover); }
-        .text-deep-alegra { color: var(--alegra-sec-deep); }
-        .bg-light-alegra { background-color: var(--alegra-sec-light); }
-        
-        /* Animaciones suaves */
-        .transition-all-custom {
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        .text-alegra { color: var(--alegra-primary); }
+        .rounded-control { border-radius: 10px; }
+        .rounded-card { border-radius: 12px; }
+        .rounded-container { border-radius: 16px; }
+        .transition-custom { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
     </style>
 </head>
-<body class="min-h-screen antialiased">
+<body class="min-h-screen antialiased flex flex-col">
 
-    <!-- HEADER PREMIUM -->
-    <header class="bg-white/80 backdrop-blur-md border-b border-slate-100 sticky top-0 z-40 px-6 py-4 shadow-[0_2px_15px_rgba(0,0,0,0.02)]">
-        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center space-x-4">
-                <div class="bg-alegra text-slate-900 font-black text-2xl w-10 h-10 rounded-xl flex items-center justify-center shadow-xs select-none relative group transition-transform hover:scale-105">
-                    a
-                    <span class="absolute -top-1 -right-1 flex h-2.5 w-2.5">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                    </span>
-                </div>
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 px-6 py-4 shadow-xs">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3.5">
+                <img src="https://alegra.design/kit/icon.svg" alt="Alegra" class="w-9 h-9 transition-transform hover:scale-105">
                 <div>
-                    <h1 class="text-base font-extrabold text-deep-alegra tracking-tight">Co-crea Alegra con nosotros</h1>
+                    <h1 class="text-base font-extrabold tracking-tight text-slate-900">Co-crea Alegra con nosotros</h1>
                     <p class="text-xs text-slate-400 font-medium">Tus ideas definen el rumbo de la plataforma contable más amigable</p>
                 </div>
             </div>
             
-            <div id="user-badge" class="bg-slate-50 border border-slate-100 rounded-xl px-4 py-2 text-xs font-semibold text-slate-600 shadow-[0_1px_2px_rgba(0,0,0,0.01)]">
-                <!-- Carga dinámica -->
+            <div class="flex items-center space-x-4">
+                <div id="user-badge" class="bg-slate-50 border border-slate-100 rounded-control px-4 py-2 text-xs font-semibold text-slate-600">
+                    </div>
+                <button onclick="openModal()" class="bg-alegra hover:bg-[#299e9c] active:bg-[#208d8d] text-white font-bold text-xs py-2.5 px-4 rounded-xl cursor-pointer transition-custom shadow-xs hover:scale-[1.02]">
+                    ✨ Proponer Nueva Idea
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- CONTAINER PRINCIPAL -->
-    <main class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
-        
-        <!-- FORMULARIO VISUALMENTE GANADOR (5 Columnas) -->
-        <div class="lg:col-span-5 space-y-6">
-            <div id="form-container" class="bg-white p-7 rounded-2xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.02)] space-y-5 transition-all-custom">
-                <div class="space-y-1">
-                    <h2 class="text-lg font-black text-deep-alegra tracking-tight flex items-center">
-                        ✨ ¿Qué herramienta sueñas ver?
-                    </h2>
-                    <p class="text-xs text-slate-400 font-medium">Cuéntanos esa funcionalidad que te cambiaría la vida.</p>
-                </div>
-                
-                <form id="proposal-form" onsubmit="createNewProposal(event)" class="space-y-5">
-                    <!-- INPUT TÍTULO -->
-                    <div class="space-y-1">
-                        <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">Dale un nombre a tu idea</label>
-                        <input type="text" id="idea-title" required oninput="checkDuplicateSystem()" placeholder="Ej: Facturación masiva en un solo clic" class="w-full text-xs bg-slate-50 border border-slate-200/80 rounded-xl p-3 font-medium text-slate-800 focus:outline-none focus:ring-4 focus:ring-[var(--alegra-sec-light)] focus:border-[var(--alegra-primary)] focus:bg-white transition-all-custom placeholder:text-slate-400">
-                    </div>
-                    
-                    <!-- Detección de duplicados interactiva -->
-                    <div id="duplicate-warning" class="hidden bg-amber-50 border border-amber-200/70 rounded-xl p-3.5 text-xs text-amber-800 space-y-2 animate-fade-in">
-                        <div class="flex items-center font-bold">
-                            <span class="mr-1.5 text-base">💡</span> Un momento, ¿alguien se te adelantó?:
-                        </div>
-                        <ul id="duplicate-list" class="list-disc pl-4 space-y-1 font-semibold text-amber-900"></ul>
-                    </div>
-
-                    <!-- INPUT DETALLE -->
-                    <div class="space-y-1">
-                        <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">¿Cómo funcionaría y por qué la necesitas?</label>
-                        <textarea id="idea-desc" required rows="3" placeholder="Ej: Me gustaría seleccionar múltiples cotizaciones desde el listado y convertirlas todas a facturas al mismo tiempo, esto me ahorraría 2 horas diarias..." class="w-full text-xs bg-slate-50 border border-slate-200/80 rounded-xl p-3 font-medium text-slate-800 focus:outline-none focus:ring-4 focus:ring-[var(--alegra-sec-light)] focus:border-[var(--alegra-primary)] focus:bg-white transition-all-custom placeholder:text-slate-400 leading-relaxed"></textarea>
-                    </div>
-
-                    <!-- SELECTOR DE CATEGORÍAS EN TARJETAS VISUALES (GAMIFICADO) -->
-                    <div class="space-y-2">
-                        <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">¿A qué módulo pertenece?</label>
-                        <div class="grid grid-cols-2 gap-2" id="category-grid">
-                            <!-- Inyectado por JS para control de estados seleccionados -->
-                        </div>
-                    </div>
-
-                    <!-- MEDIDOR DE IMPACTO EMOCIONAL -->
-                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100 flex items-center justify-between">
-                        <div class="text-left">
-                            <span class="block text-[11px] font-bold text-slate-500 uppercase tracking-tight">¿Qué tanto impacto tendría?</span>
-                            <span class="text-[10px] text-slate-400 font-medium">Ayuda al equipo a entender la urgencia</span>
-                        </div>
-                        <div class="flex space-x-1 text-lg text-amber-400 cursor-pointer select-none">
-                            <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="w-full bg-alegra hover-alegra text-slate-900 font-extrabold text-xs py-3 px-4 rounded-xl transition-all-custom cursor-pointer shadow-md shadow-teal-400/10 hover:shadow-lg active:scale-[0.99]">
-                        🚀 Publicar en el tablero de votaciones
-                    </button>
-                </form>
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-6">
+        <div class="bg-white p-5 rounded-container border border-slate-200 shadow-xs space-y-4">
+            <div class="relative">
+                <input type="text" id="search-input" oninput="renderDashboard()" placeholder="Buscar ideas geniales de la comunidad..." class="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 p-3 font-medium text-slate-800 focus:outline-none focus:ring-4 focus:ring-[#30bbb7]/10 focus:border-[var(--alegra-primary)] transition-custom">
+                <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-4-4m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+            
+            <div class="flex flex-wrap gap-1.5 items-center text-[10px]">
+                <span class="text-slate-400 font-bold uppercase tracking-wider mr-2">Filtro:</span>
+                <button onclick="setFilter('cat', 'Todas')" id="btn-cat-Todas" class="filter-btn px-3 py-1.5 rounded-lg font-bold bg-[#cff2f1] text-slate-900 border border-[#30bbb7]/30 transition-custom cursor-pointer">Todos los módulos</button>
+                <button onclick="setFilter('cat', 'Facturación')" id="btn-cat-Facturación" class="filter-btn px-3 py-1.5 rounded-lg font-semibold text-slate-500 hover:bg-slate-50 transition-custom cursor-pointer">Facturación</button>
+                <button onclick="setFilter('cat', 'Inventario')" id="btn-cat-Inventario" class="filter-btn px-3 py-1.5 rounded-lg font-semibold text-slate-500 hover:bg-slate-50 transition-custom cursor-pointer">Inventario</button>
+                <button onclick="setFilter('cat', 'Reportes')" id="btn-cat-Reportes" class="filter-btn px-3 py-1.5 rounded-lg font-semibold text-slate-500 hover:bg-slate-50 transition-custom cursor-pointer">Reportes</button>
+                <button onclick="setFilter('cat', 'Integraciones')" id="btn-cat-Integraciones" class="filter-btn px-3 py-1.5 rounded-lg font-semibold text-slate-500 hover:bg-slate-50 transition-custom cursor-pointer">Integraciones</button>
             </div>
         </div>
+    </section>
 
-        <!-- EXPLORADOR Y TABLERO DE PROPUESTAS (7 Columnas) -->
-        <div class="lg:col-span-7 space-y-5">
-            
-            <!-- BUSCADOR E INTUICIÓN DE FILTROS -->
-            <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.01)] space-y-4">
-                <div class="relative">
-                    <input type="text" id="search-input" oninput="renderDashboard()" placeholder="Buscar ideas geniales de la comunidad..." class="w-full text-xs bg-slate-50 border border-slate-150 rounded-xl pl-10 pr-4 p-3 font-medium text-slate-800 focus:outline-none focus:ring-4 focus:ring-[var(--alegra-sec-light)] focus:border-[var(--alegra-primary)] transition-all-custom">
-                    <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-4-4m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                </div>
-                
-                <!-- Filtros elegantes estilo cápsula -->
-                <div class="flex flex-wrap gap-1.5 items-center text-[10px]">
-                    <span class="text-slate-400 font-bold uppercase tracking-wider mr-1">Filtro:</span>
-                    <button onclick="setFilter('cat', 'Todas')" id="btn-cat-Todas" class="filter-btn px-3 py-1.5 rounded-lg font-bold bg-light-alegra text-main-alegra border border-[var(--alegra-sec-light)] transition-all-custom cursor-pointer">Todos los módulos</button>
-                    <button onclick="setFilter('cat', 'Facturación')" id="btn-cat-Facturación" class="filter-btn px-3 py-1.5 rounded-lg font-semibold text-slate-500 hover:bg-slate-50 transition-all-custom cursor-pointer">Facturación</button>
-                    <button onclick="setFilter('cat', 'Inventario')" id="btn-cat-Inventario" class="filter-btn px-3 py-1.5 rounded-lg font-semibold text-slate-500 hover:bg-slate-50 transition-all-custom cursor-pointer">Inventario</button>
-                    <button onclick="setFilter('cat', 'Reportes')" id="btn-cat-Reportes" class="filter-btn px-3 py-1.5 rounded-lg font-semibold text-slate-500 hover:bg-slate-50 transition-all-custom cursor-pointer">Reportes</button>
-                </div>
-
-                <div class="flex flex-wrap gap-1.5 items-center text-[10px] pt-3 border-t border-slate-50">
-                    <span class="text-slate-400 font-bold uppercase tracking-wider mr-1">Estado:</span>
-                    <button onclick="setFilter('status', 'Todos')" id="btn-status-Todos" class="filter-btn px-3 py-1.5 rounded-lg font-bold bg-light-alegra text-main-alegra border border-[var(--alegra-sec-light)] transition-all-custom cursor-pointer">Ver todo el Roadmap</button>
-                    <button onclick="setFilter('status', 'Nuevo')" id="btn-status-Nuevo" class="filter-btn px-3 py-1.5 rounded-lg font-semibold text-slate-500 hover:bg-slate-50 transition-all-custom cursor-pointer">Nuevos</button>
-                    <button onclick="setFilter('status', 'Planeado')" id="btn-status-Planeado" class="filter-btn px-3 py-1.5 rounded-lg font-semibold text-slate-500 hover:bg-slate-50 transition-all-custom cursor-pointer">🎯 Planeados</button>
-                    <button onclick="setFilter('status', 'En Desarrollo')" id="btn-status-EnDesarrollo" class="filter-btn px-3 py-1.5 rounded-lg font-semibold text-slate-500 hover:bg-slate-50 transition-all-custom cursor-pointer">🛠️ En Proceso</button>
-                    <button onclick="setFilter('status', 'Lanzado')" id="btn-status-Lanzado" class="filter-btn px-3 py-1.5 rounded-lg font-semibold text-slate-500 hover:bg-slate-50 transition-all-custom cursor-pointer">✅ Lanzados</button>
-                </div>
+    <main class="flex-grow max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+        
+        <div class="bg-slate-100/70 p-4 rounded-2xl border border-slate-200/50 space-y-4 flex flex-col h-[calc(100vh-240px)] min-h-[500px]">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-2 flex-shrink-0">
+                <span class="text-xs font-bold text-slate-700 uppercase tracking-wide flex items-center">📥 Nuevas Ideas</span>
+                <span id="count-Nuevo" class="bg-slate-200 text-slate-700 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold">0</span>
             </div>
+            <div id="col-Nuevo" class="space-y-3.5 overflow-y-auto flex-grow pr-1"></div>
+        </div>
 
-            <!-- CONTENEDOR DE TARJETAS DE IDEAS -->
-            <div id="ideas-list-container" class="space-y-4"></div>
+        <div class="bg-slate-100/70 p-4 rounded-2xl border border-slate-200/50 space-y-4 flex flex-col h-[calc(100vh-240px)] min-h-[500px]">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-2 flex-shrink-0">
+                <span class="text-xs font-bold text-teal-800 uppercase tracking-wide flex items-center">🛠️ En Desarrollo</span>
+                <span id="count-EnDesarrollo" class="bg-[#cff2f1] text-teal-800 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold">0</span>
+            </div>
+            <div id="col-EnDesarrollo" class="space-y-3.5 overflow-y-auto flex-grow pr-1"></div>
+        </div>
+
+        <div class="bg-slate-100/70 p-4 rounded-2xl border border-slate-200/50 space-y-4 flex flex-col h-[calc(100vh-240px)] min-h-[500px]">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-2 flex-shrink-0">
+                <span class="text-xs font-bold text-emerald-800 uppercase tracking-wide flex items-center">✅ Lanzadas</span>
+                <span id="count-Lanzado" class="bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold">0</span>
+            </div>
+            <div id="col-Lanzado" class="space-y-3.5 overflow-y-auto flex-grow pr-1"></div>
         </div>
     </main>
 
-    <!-- SIMULADOR DISCRETO SSO (ABAJO A LA DERECHA) -->
-    <div class="fixed bottom-4 right-4 bg-slate-900 text-white rounded-2xl shadow-xl p-4 max-w-xs z-50 text-xs space-y-2 border border-slate-800">
-        <div class="font-bold text-slate-200 flex items-center justify-between">
-            <span>⚙️ Entorno de Pruebas Integrado</span>
+    <div id="idea-modal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center z-50 p-4">
+        <div class="bg-white p-6 rounded-container border border-slate-200 max-w-md w-full space-y-4 shadow-xl max-h-[95vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+                <h2 class="text-sm font-bold tracking-tight flex items-center text-slate-900">✨ ¿Qué herramienta sueñas ver en Alegra?</h2>
+                <button onclick="closeModal()" class="text-slate-400 font-bold hover:text-slate-600 cursor-pointer text-sm">✕</button>
+            </div>
+            
+            <form id="proposal-form" onsubmit="processWithAI(event)" class="space-y-4">
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Dale un nombre a tu idea</label>
+                    <input type="text" id="idea-title" required placeholder="Ej: Facturación masiva en un solo clic" class="w-full text-xs bg-slate-50 border border-slate-200 rounded-control p-2.5 font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#30bbb7]/20 focus:border-[var(--alegra-primary)] transition-custom">
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">¿Cómo funcionaría y por qué la necesitas?</label>
+                    <textarea id="idea-desc" required rows="4" placeholder="Cuéntanos de forma sencilla qué problema resolvería esta mejora..." class="w-full text-xs bg-slate-50 border border-slate-200 rounded-control p-2.5 font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#30bbb7]/20 focus:border-[var(--alegra-primary)] transition-custom"></textarea>
+                </div>
+
+                <div class="bg-teal-50/50 p-3 rounded-control border border-[#30bbb7]/20 flex items-start space-x-2.5">
+                    <input type="checkbox" id="idea-beta-volunteer" class="mt-0.5 accent-[#30bbb7] h-4 w-4 rounded-sm border-slate-300 cursor-pointer">
+                    <div class="text-left">
+                        <label for="idea-beta-volunteer" class="block text-[11px] font-bold text-teal-950 cursor-pointer">🧪 ¡Quiero ayudar a probar esta idea antes que nadie!</label>
+                        <span class="text-[10px] text-teal-700/80 font-medium block leading-tight">Nos anotaremos automáticamente para evaluar el prototipo en primicia cuando empiece a construirse.</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-alegra hover:bg-[#299e9c] text-white font-bold text-xs py-3 rounded-control transition-custom cursor-pointer flex items-center justify-center space-x-2">
+                    <span>🚀 Enviar a revisión inteligente</span>
+                </button>
+            </form>
         </div>
-        <p class="text-slate-400 text-[11px] font-medium leading-tight">Cambia el perfil simulado para evaluar la prioridad automática basada en el plan de Alegra:</p>
-        <select id="sso-user-selector" onchange="switchUserRole()" class="w-full bg-slate-800 text-slate-200 py-2 px-2.5 rounded-xl border border-slate-700 focus:outline-none text-[11px] font-semibold cursor-pointer">
+    </div>
+
+    <div id="ai-moderator-modal" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center z-50 p-4">
+        <div class="bg-white p-6 rounded-container border border-slate-200 max-w-sm w-full space-y-4 shadow-2xl text-center">
+            
+            <div id="ai-loading" class="py-6 space-y-3">
+                <div class="w-12 h-12 border-4 border-[#30bbb7]/20 border-t-[#30bbb7] rounded-full animate-spin mx-auto"></div>
+                <h3 class="text-xs font-bold text-slate-900">La Inteligencia Artificial de Alegra está revisando tu idea...</h3>
+                <p class="text-[11px] text-slate-400">Buscando similitudes para evitar duplicados y organizando el tablero.</p>
+            </div>
+
+            <div id="ai-success" class="hidden space-y-4">
+                <div class="text-3xl">🤖✨</div>
+                <h3 class="text-xs font-bold text-emerald-800 bg-emerald-50 py-1.5 px-3 rounded-full inline-block">¡Idea revisada y organizada con éxito!</h3>
+                
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-left space-y-1.5 text-[11px]">
+                    <div><span class="font-bold text-slate-400 uppercase text-[9px] block">Módulo asignado por IA:</span> <span id="ai-suggested-cat" class="font-bold text-slate-800">Facturación</span></div>
+                    <div><span class="font-bold text-slate-400 uppercase text-[9px] block">Estado del filtro:</span> <span class="font-medium text-emerald-600">✓ Aprobada para el tablero público (Única)</span></div>
+                </div>
+
+                <p class="text-[11px] text-slate-500 leading-normal">Nuestro asistente confirmó que no existen propuestas idénticas vigentes. ¡Ya es visible para toda la comunidad!</p>
+                
+                <button onclick="finalizeProposal()" class="w-full bg-alegra hover:bg-[#299e9c] text-white font-bold text-xs py-2.5 rounded-control transition-custom cursor-pointer">
+                    Ver mi idea en el tablero
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-4 right-4 bg-slate-900 text-white rounded-container shadow-2xl p-4 max-w-xs z-50 text-xs space-y-2 border border-slate-800">
+        <div class="font-bold text-slate-200">⚙️ Entorno de Pruebas (SSO)</div>
+        <select id="sso-user-selector" onchange="switchUserRole()" class="w-full bg-slate-800 text-slate-200 py-2 px-2.5 rounded-control focus:outline-none text-[11px] font-semibold cursor-pointer">
             <option value="user_starter">Cliente: Distribuidora Sol (Plan Pyme - Voto x1)</option>
             <option value="user_plus" selected>Cliente: Alimentos Premium (Plan Pro - Voto x2)</option>
             <option value="user_enterprise">Cliente: Inversiones Globales S.A. (Plan Enterprise - Voto x3)</option>
@@ -170,18 +168,10 @@
         </select>
     </div>
 
-    <!-- CÓDIGO LÓGICO COMPLETO -->
     <script>
         const initialMockData = [
-            { id: "AL-101", title: "Sincronización automática de existencias con Shopify", desc: "Evita que vendamos productos agotados. Necesitamos que al facturar en el punto físico de Alegra, el stock en Shopify se descuente de inmediato de forma transparente.", category: "Integraciones", status: "En Desarrollo", creator: "Alimentos Premium", plan: "Pro", voters: ["user_plus"], votedPoints: 2, complexity: 3, adminComment: "¡Buenísima! Estamos construyendo los webhooks de salida estables. Estimamos pruebas beta en 2 semanas.", createdAt: "2026-06-05" },
-            { id: "AL-102", title: "Configurar cláusulas de términos y garantías al pie del PDF", desc: "Para el sector de servicios y construcción, requerimos plasmar condiciones comerciales legales de forma ágil antes de enviar presupuestos.", category: "Facturación", status: "Planeado", creator: "Inversiones Globales S.A.", plan: "Enterprise", voters: ["user_enterprise"], votedPoints: 3, complexity: 1, adminComment: "Priorizada. Entrará al pipeline del próximo ciclo de diseño debido a su alto impacto.", createdAt: "2026-06-11" }
-        ];
-
-        const categoriesList = [
-            { name: "Facturación", icon: "📑" },
-            { name: "Inventario", icon: "📦" },
-            { name: "Reportes", icon: "📈" },
-            { name: "Integraciones", icon: "🔌" }
+            { id: "AL-101", title: "Sincronización automática de existencias con Shopify", desc: "Evita que vendamos productos agotados. Al facturar en físico, el stock en Shopify se descuenta de inmediato de forma transparente.", category: "Integraciones", status: "En Desarrollo", creator: "Alimentos Premium", plan: "Pro", voters: ["user_plus"], votedPoints: 2, complexity: 3, adminComment: "Módulo en fase de pruebas de funcionamiento interno.", subscribers: ["user_plus", "user_starter"], betaTesters: ["user_plus"], createdAt: "2026-06-05" },
+            { id: "AL-102", title: "Configurar cláusulas de términos y garantías al pie del PDF", desc: "Para el sector de servicios y construcción, requerimos plasmar condiciones comerciales legales de forma ágil.", category: "Facturación", status: "Nuevo", creator: "Inversiones Globales S.A.", plan: "Enterprise", voters: ["user_enterprise"], votedPoints: 3, complexity: 1, adminComment: "", subscribers: ["user_enterprise"], betaTesters: [], createdAt: "2026-06-11" }
         ];
 
         const rolesConfig = {
@@ -192,96 +182,87 @@
         };
 
         let currentRoleKey = "user_plus";
-        let activeFilters = { cat: "Todas", status: "Todos" };
-        let selectedCategory = "Facturación";
+        let activeFilters = { cat: "Todas" };
         let proposals = [];
+        let temporaryProposalHold = null; // Guarda la propuesta mientras pasa la revisión de IA
 
         window.onload = function() {
-            proposals = localStorage.getItem("alegra_gamified_hub") ? JSON.parse(localStorage.getItem("alegra_gamified_hub")) : initialMockData;
-            renderCategoryCards();
+            proposals = localStorage.getItem("alegra_kanban_brand_v6") ? JSON.parse(localStorage.getItem("alegra_kanban_brand_v6")) : initialMockData;
             switchUserRole();
         };
 
-        function save() { localStorage.setItem("alegra_gamified_hub", JSON.stringify(proposals)); }
-
-        function renderCategoryCards() {
-            const grid = document.getElementById("category-grid");
-            grid.innerHTML = categoriesList.map(cat => {
-                const isActive = cat.name === selectedCategory;
-                return `
-                    <div onclick="selectCategory('${cat.name}')" class="p-3 border rounded-xl text-center cursor-pointer transition-all-custom flex flex-col items-center justify-center space-y-1 ${isActive ? 'bg-light-alegra border-[var(--alegra-primary)] scale-[1.02] shadow-xs' : 'bg-slate-50 border-slate-200/60 hover:bg-slate-100/70'}">
-                        <span class="text-lg">${cat.icon}</span>
-                        <span class="text-[11px] font-bold text-deep-alegra">${cat.name}</span>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function selectCategory(name) {
-            selectedCategory = name;
-            renderCategoryCards();
-        }
+        function openModal() { document.getElementById("idea-modal").classList.remove("hidden"); }
+        function closeModal() { document.getElementById("idea-modal").classList.add("hidden"); }
 
         function switchUserRole() {
             currentRoleKey = document.getElementById("sso-user-selector").value;
             const role = rolesConfig[currentRoleKey];
-            
-            document.getElementById("form-container").style.display = role.isAdmin ? "none" : "block";
-
-            const badge = document.getElementById("user-badge");
-            if(role.isAdmin) {
-                badge.innerHTML = `<div class="flex items-center space-x-2"><span class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span><span class="text-purple-700 font-extrabold">Panel Administrador Alegra</span></div>`;
-            } else {
-                badge.innerHTML = `<div class="flex items-center space-x-2"><span class="w-2 h-2 bg-[var(--alegra-primary)] rounded-full"></span><span>${role.company} • <strong class="text-slate-800">Plan ${role.plan}</strong></span></div>`;
-            }
-
+            document.getElementById("user-badge").innerHTML = role.isAdmin ? `<span class="text-purple-700 font-bold">Admin: ${role.name}</span>` : `<span>${role.company} • <strong>Plan ${role.plan}</strong></span>`;
             renderDashboard();
         }
 
-        function checkDuplicateSystem() {
-            const title = document.getElementById("idea-title").value.trim().toLowerCase();
-            const warningBox = document.getElementById("duplicate-warning");
-            if (title.length < 4) { warningBox.classList.add("hidden"); return; }
+        // SIMULACIÓN DE FILTRO DE REVISIÓN INTELIGENTE DE IA
+        function processWithAI(e) {
+            e.preventDefault();
+            closeModal();
+            
+            // Mostrar modal de procesamiento de IA
+            document.getElementById("ai-moderator-modal").classList.remove("hidden");
+            document.getElementById("ai-loading").classList.remove("hidden");
+            document.getElementById("ai-success").classList.add("hidden");
 
-            const matches = proposals.filter(p => p.title.toLowerCase().includes(title));
-            if (matches.length > 0) {
-                warningBox.classList.remove("hidden");
-                document.getElementById("duplicate-list").innerHTML = matches.map(m => `<li>${m.title}</li>`).join('');
-            } else {
-                warningBox.classList.add("hidden");
-            }
+            const titleText = document.getElementById("idea-title").value.trim();
+            const descText = document.getElementById("idea-desc").value.trim();
+            
+            // Clasificación por IA simulada basada en palabras clave
+            let guessedCategory = "Facturación"; 
+            const textToAnalyze = (titleText + " " + descText).toLowerCase();
+            if (textToAnalyze.includes("inventario") || textToAnalyze.includes("stock") || textToAnalyze.includes("existencias") || textToAnalyze.includes("bodega")) guessedCategory = "Inventario";
+            else if (textToAnalyze.includes("reporte") || textToAnalyze.includes("gráfica") || textToAnalyze.includes("métrica") || textToAnalyze.includes("excel")) guessedCategory = "Reportes";
+            else if (textToAnalyze.includes("shopify") || textToAnalyze.includes("api") || textToAnalyze.includes("integración") || textToAnalyze.includes("mercado libre")) guessedCategory = "Integraciones";
+
+            const role = rolesConfig[currentRoleKey];
+            const wantBeta = document.getElementById("idea-beta-volunteer").checked;
+
+            // Guardamos temporalmente el objeto estructurado
+            temporaryProposalHold = {
+                id: `AL-${100 + proposals.length + 1}`,
+                title: titleText,
+                desc: descText,
+                category: guessedCategory, // Categoría inteligente detectada
+                status: "Nuevo", 
+                creator: role.company, 
+                plan: role.plan, 
+                voters: [currentRoleKey], 
+                votedPoints: role.weight, 
+                complexity: 1, 
+                adminComment: "",
+                subscribers: [currentRoleKey], 
+                betaTesters: wantBeta ? [currentRoleKey] : [],       
+                createdAt: new Date().toISOString().split('T')[0]
+            };
+
+            // Simular retraso de procesamiento del algoritmo (1.8 segundos)
+            setTimeout(() => {
+                document.getElementById("ai-loading").classList.add("hidden");
+                document.getElementById("ai-suggested-cat").innerText = guessedCategory;
+                document.getElementById("ai-success").classList.remove("hidden");
+            }, 1800);
         }
 
-        function createNewProposal(e) {
-            e.preventDefault();
-            const role = rolesConfig[currentRoleKey];
-            if (role.isAdmin) return;
-
-            proposals.unshift({
-                id: `AL-${100 + proposals.length + 1}`,
-                title: document.getElementById("idea-title").value.trim(),
-                desc: document.getElementById("idea-desc").value.trim(),
-                category: selectedCategory,
-                status: "Nuevo",
-                creator: role.company,
-                plan: role.plan,
-                voters: [currentRoleKey],
-                votedPoints: role.weight,
-                complexity: 1,
-                adminComment: "",
-                createdAt: new Date().toISOString().split('T')[0]
-            });
-
-            save();
+        function finalizeProposal() {
+            if (temporaryProposalHold) {
+                proposals.unshift(temporaryProposalHold);
+                localStorage.setItem("alegra_kanban_brand_v6", JSON.stringify(proposals));
+                temporaryProposalHold = null;
+            }
             document.getElementById("proposal-form").reset();
-            document.getElementById("duplicate-warning").classList.add("hidden");
+            document.getElementById("ai-moderator-modal").classList.add("hidden");
             renderDashboard();
         }
 
         function toggleVote(id) {
-            const role = rolesConfig[currentRoleKey];
-            if (role.isAdmin) return;
-
+            const role = rolesConfig[currentRoleKey]; if (role.isAdmin) return;
             const idea = proposals.find(p => p.id === id);
             const index = idea.voters.indexOf(currentRoleKey);
 
@@ -291,134 +272,163 @@
             } else {
                 idea.voters.push(currentRoleKey);
                 idea.votedPoints += role.weight;
+                if (!idea.subscribers.includes(currentRoleKey)) idea.subscribers.push(currentRoleKey);
             }
-            save();
+            localStorage.setItem("alegra_kanban_brand_v6", JSON.stringify(proposals));
             renderDashboard();
         }
 
-        function updateAdmin(id, field, value) {
+        function toggleBetaTester(id) {
+            const role = rolesConfig[currentRoleKey]; if (role.isAdmin) return;
             const idea = proposals.find(p => p.id === id);
-            if (!idea) return;
-            if (field === 'complexity') idea.complexity = parseInt(value);
-            if (field === 'status') idea.status = value;
-            if (field === 'comment') idea.adminComment = value;
-            save();
+            const index = idea.betaTesters.indexOf(currentRoleKey);
+
+            if (index > -1) {
+                idea.betaTesters.splice(index, 1);
+            } else {
+                idea.betaTesters.push(currentRoleKey);
+                if (!idea.subscribers.includes(currentRoleKey)) idea.subscribers.push(currentRoleKey);
+            }
+            localStorage.setItem("alegra_kanban_brand_v6", JSON.stringify(proposals));
+            renderDashboard();
+        }
+
+        function triggerAdminAlert(id, type) {
+            const idea = proposals.find(p => p.id === id);
+            alert(`📢 [Aviso Automático]\nSe ha notificado a las ${idea.subscribers.length} empresas que siguen esta propuesta lo siguiente: "${type}"`);
+        }
+
+        function updateAdminField(id, field, value) {
+            const idea = proposals.find(p => p.id === id);
+            if(idea) {
+                if(field === 'status') {
+                    idea.status = value;
+                    setTimeout(() => {
+                        alert(`📧 [Correo Informativo] Enviando actualización a los ${idea.subscribers.length} interesados: La idea '${idea.title}' ha avanzado a: ${value}.`);
+                    }, 300);
+                }
+                if(field === 'comment') idea.adminComment = value;
+                if(field === 'complexity') idea.complexity = parseInt(value);
+            }
+            localStorage.setItem("alegra_kanban_brand_v6", JSON.stringify(proposals));
             renderDashboard();
         }
 
         function setFilter(type, val) {
             activeFilters[type] = val;
-            document.querySelectorAll(`.filter-btn`).forEach(b => {
-                if(b.id.startsWith(`btn-${type}-`)) b.className = "filter-btn px-3 py-1.5 rounded-lg font-semibold text-slate-500 hover:bg-slate-50 transition-all-custom cursor-pointer";
-            });
-            const safeId = val.replace(/\s+/g, '');
-            document.getElementById(`btn-${type}-${safeId}`).className = "filter-btn px-3 py-1.5 rounded-lg font-bold bg-light-alegra text-main-alegra border border-[var(--alegra-sec-light)] transition-all-custom cursor-pointer";
+            document.querySelectorAll(`.filter-btn`).forEach(b => b.className = "filter-btn px-3 py-1.5 rounded-lg font-semibold text-slate-500 hover:bg-slate-50 transition-custom cursor-pointer");
+            document.getElementById(`btn-${type}-${val.replace(/\s+/g, '')}`).className = "filter-btn px-3 py-1.5 rounded-lg font-bold bg-[#cff2f1] text-slate-900 border border-[#30bbb7]/30 transition-custom cursor-pointer";
             renderDashboard();
         }
 
         function renderDashboard() {
             const search = document.getElementById("search-input").value.toLowerCase();
-            const container = document.getElementById("ideas-list-container");
             const role = rolesConfig[currentRoleKey];
+            const columns = { "Nuevo": [], "En Desarrollo": [], "Lanzado": [] };
+            
+            let filtered = proposals.filter(p => (activeFilters.cat === "Todas" || p.category === activeFilters.cat) && (p.title.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search)));
+            
+            filtered.sort((a,b) => (b.votedPoints / (b.complexity || 1)) - (a.votedPoints / (a.complexity || 1)));
+            filtered.forEach(p => { if (columns[p.status]) columns[p.status].push(p); });
 
-            let filtered = proposals.filter(p => {
-                return (activeFilters.cat === "Todas" || p.category === activeFilters.cat) &&
-                       (activeFilters.status === "Todos" || p.status === activeFilters.status) &&
-                       (p.title.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search));
-            });
-
-            filtered.sort((a,b) => (b.votedPoints / a.complexity) - (a.votedPoints / b.complexity));
-
-            if(filtered.length === 0) {
-                container.innerHTML = `<div class="bg-white p-12 text-center rounded-2xl border border-slate-100 text-slate-400 text-xs font-semibold shadow-xs">Aún no hay propuestas registradas en este bloque.</div>`;
-                return;
-            }
-
-            container.innerHTML = filtered.map(idea => {
-                const voted = idea.voters.includes(currentRoleKey);
-                let stColor = "bg-slate-50 text-slate-600 border-slate-100";
-                if(idea.status === "Planeado") stColor = "bg-amber-50 text-amber-700 border-amber-200/40";
-                if(idea.status === "En Desarrollo") stColor = "bg-teal-50 text-teal-800 border-teal-200/50";
-                if(idea.status === "Lanzado") stColor = "bg-emerald-50 text-emerald-700 border-emerald-100";
-
-                return `
-                    <div class="bg-white border border-slate-100 rounded-2xl p-5 flex flex-col sm:flex-row gap-5 items-start transition-all-custom hover:shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:border-slate-200/70">
-                        
-                        <!-- SECCIÓN VOTO PREMIUM -->
-                        <div class="w-full sm:w-14 flex sm:flex-col items-center justify-center rounded-xl p-1.5 transition-all-custom ${voted ? 'bg-light-alegra/60 border border-[var(--alegra-sec-light)]' : 'bg-slate-50/80 border border-slate-100'}">
-                            ${!role.isAdmin ? `
-                                <button onclick="toggleVote('${idea.id}')" class="w-full text-center focus:outline-none cursor-pointer group">
-                                    <span class="text-sm font-bold block transition-transform group-hover:-translate-y-0.5 ${voted ? 'text-[var(--alegra-sec-medium)]' : 'text-slate-400'}">▲</span>
-                                    <span class="text-base font-black text-slate-800 block leading-none my-0.5">${idea.votedPoints}</span>
-                                    <span class="text-[9px] uppercase font-bold text-slate-400 block tracking-tight">${voted ? 'Apoyado' : 'Apoyar'}</span>
-                                </button>
-                            ` : `
-                                <div class="text-center">
-                                    <span class="text-[8px] uppercase font-bold text-slate-400 block tracking-tight">RICE</span>
-                                    <span class="text-base font-black text-teal-700 block leading-none my-0.5">${(idea.votedPoints/idea.complexity).toFixed(1)}</span>
+            ["Nuevo", "En Desarrollo", "Lanzado"].forEach(status => {
+                const safeId = status.replace(/\s+/g, '');
+                document.getElementById(`count-${safeId}`).innerText = columns[status].length;
+                const container = document.getElementById(`col-${safeId}`);
+                
+                container.innerHTML = columns[status].map(idea => {
+                    const voted = idea.voters.includes(currentRoleKey);
+                    const isSubscribed = idea.subscribers?.includes(currentRoleKey);
+                    const isTester = idea.betaTesters?.includes(currentRoleKey);
+                    
+                    return `
+                        <div class="bg-white border border-slate-200 p-4 rounded-xl shadow-2xs space-y-3 transition-custom hover:border-slate-300 relative">
+                            <div class="flex items-center justify-between gap-2">
+                                <div class="flex items-center space-x-1.5">
+                                    <span class="bg-slate-100 border border-slate-200 font-bold px-2 py-0.5 rounded-md text-[9px] text-slate-500 uppercase tracking-wide">${idea.category}</span>
+                                    
+                                    <span class="text-xs" title="${isSubscribed ? 'Sigues esta idea y recibirás avisos' : 'No la sigues todavía'}">
+                                        ${isSubscribed ? '🔔' : '🔕'}
+                                    </span>
                                 </div>
-                            `}
-                        </div>
-
-                        <!-- CONTENIDO DE LA PROPUESTA -->
-                        <div class="flex-grow space-y-2.5 w-full text-xs">
-                            <div class="flex flex-wrap items-center gap-2 text-[10px]">
-                                <span class="bg-slate-100 text-slate-500 font-bold px-2 py-0.5 rounded-md uppercase tracking-wide">${idea.category}</span>
-                                <span class="border px-2.5 py-0.5 rounded-full font-bold ${stColor}">${idea.status}</span>
-                                <span class="text-slate-400 font-semibold ml-auto">${idea.createdAt}</span>
-                            </div>
-
-                            <h3 class="text-sm font-extrabold text-deep-alegra tracking-tight leading-snug">${idea.title}</h3>
-                            <p class="text-slate-500 font-medium leading-relaxed">${idea.desc}</p>
-                            
-                            <div class="text-[10px] text-slate-400 font-medium">
-                                Iniciada por: <span class="font-bold text-slate-500">${idea.creator}</span> • <span class="font-semibold text-slate-400 bg-slate-50 px-1.5 py-0.5 rounded border border-slate-100/70">Plan ${idea.plan}</span>
-                            </div>
-
-                            <!-- COMENTARIO DE RESPUESTA OFICIAL -->
-                            ${idea.adminComment ? `
-                                <div class="bg-light-alegra/30 border border-[var(--alegra-sec-light)]/60 rounded-xl p-3.5 text-xs mt-3">
-                                    <div class="font-extrabold text-main-alegra mb-1 flex items-center text-[11px]">
-                                        <span class="inline-block w-1.5 h-1.5 bg-[var(--alegra-sec-medium)] rounded-full mr-1.5 animate-pulse"></span>
-                                        Respuesta del equipo de desarrollo:
+                                
+                                ${!role.isAdmin ? `
+                                    <button onclick="toggleVote('${idea.id}')" class="flex items-center space-x-1.5 px-3 py-1 rounded-full font-bold text-xs border cursor-pointer transition-all duration-200 focus:outline-none ${voted ? 'bg-[#30bbb7] border-[#30bbb7] text-white shadow-xs scale-[1.02]' : 'bg-slate-50 border-slate-300 text-slate-700 hover:bg-slate-100'}" style="user-select:none;">
+                                        <span class="text-[10px] ${voted ? 'text-white' : 'text-[#30bbb7]'}" style="transform:translateY(-0.5px)">▲</span>
+                                        <span class="tracking-tight">${idea.votedPoints}</span>
+                                    </button>
+                                ` : `
+                                    <div class="bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded-md text-[10px] font-black text-indigo-700">
+                                        Prioridad: ${(idea.votedPoints/(idea.complexity || 1)).toFixed(1)}
                                     </div>
-                                    <p class="text-slate-600 font-medium leading-relaxed italic">"${idea.adminComment}"</p>
+                                `}
+                            </div>
+                            
+                            <div class="space-y-1">
+                                <h4 class="font-bold text-slate-900 text-xs tracking-tight leading-snug">${idea.title}</h4>
+                                <p class="text-slate-500 text-[11px] leading-relaxed font-medium">${idea.desc}</p>
+                            </div>
+
+                            <div class="flex flex-wrap gap-1.5 pt-1">
+                                <span class="bg-teal-50/60 border border-teal-100 text-teal-800 text-[9px] font-bold px-2 py-0.5 rounded-md flex items-center">
+                                    🧪 ${idea.betaTesters?.length || 0} Cuentas listas para probarla
+                                </span>
+                                
+                                ${idea.status === "En Desarrollo" && !role.isAdmin ? `
+                                    <button onclick="toggleBetaTester('${idea.id}')" class="text-[10px] font-extrabold px-2 py-0.5 rounded-md cursor-pointer transition-colors ${isTester ? 'bg-amber-100 text-amber-800 border border-amber-200' : 'bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200'}">
+                                        ${isTester ? '✨ Ya anotado' : '+ Ofrecerme para probar'}
+                                    </button>
+                                ` : ''}
+                            </div>
+
+                            <div class="text-[10px] text-slate-400 font-semibold border-t border-slate-50 pt-2 flex justify-between items-center">
+                                <span>Por: ${idea.creator}</span>
+                                <span class="text-[9px] bg-slate-50 px-1.5 py-0.5 rounded border border-slate-200 text-slate-500">${idea.subscribers?.length || 1} Siguiendo la idea</span>
+                            </div>
+
+                            ${idea.adminComment && !role.isAdmin ? `
+                                <div class="bg-slate-50 border border-slate-200 rounded-control p-2.5 text-[11px] mt-2">
+                                    <div class="font-bold text-teal-800 mb-0.5 flex items-center">
+                                        <span class="inline-block w-1.5 h-1.5 bg-[#30bbb7] rounded-full mr-1"></span>
+                                        Respuesta oficial de Alegra:
+                                    </div>
+                                    <p class="text-slate-600 font-medium italic">"${idea.adminComment}"</p>
                                 </div>
                             ` : ''}
 
-                            <!-- ADMIN PANEL CONTROLS -->
                             ${role.isAdmin ? `
-                                <div class="bg-slate-50 border border-slate-200/60 rounded-xl p-4 text-xs space-y-3 mt-3 animate-fade-in">
-                                    <div class="font-bold text-deep-alegra uppercase tracking-wider text-[10px]">Gestión de Backlog</div>
-                                    <div class="grid grid-cols-2 gap-3">
+                                <div class="bg-slate-50 border border-slate-200 rounded-control p-2.5 text-[11px] space-y-2 mt-2">
+                                    <div class="grid grid-cols-2 gap-1.5">
                                         <div>
-                                            <label class="block text-[10px] uppercase font-bold text-slate-400 mb-1">Estado</label>
-                                            <select onchange="updateAdmin('${idea.id}', 'status', this.value)" class="w-full bg-white border border-slate-200 p-2 rounded-lg font-semibold text-slate-700 cursor-pointer text-xs">
-                                                <option value="Nuevo" ${idea.status === 'Nuevo' ? 'selected' : ''}>Nuevo</option>
-                                                <option value="Planeado" ${idea.status === 'Planeado' ? 'selected' : ''}>🎯 Planeado</option>
-                                                <option value="En Desarrollo" ${idea.status === 'En Desarrollo' ? 'selected' : ''}>🛠️ En Proceso</option>
-                                                <option value="Lanzado" ${idea.status === 'Lanzado' ? 'selected' : ''}>✅ Lanzado</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label class="block text-[10px] uppercase font-bold text-slate-400 mb-1">Complejidad (Esfuerzo)</label>
-                                            <select onchange="updateAdmin('${idea.id}', 'complexity', this.value)" class="w-full bg-white border border-slate-200 p-2 rounded-lg font-semibold text-slate-700 cursor-pointer text-xs">
+                                            <label class="block text-[9px] uppercase font-bold text-slate-400">Esfuerzo Técnico</label>
+                                            <select onchange="updateAdminField('${idea.id}', 'complexity', this.value)" class="w-full bg-white border border-slate-200 p-1 rounded font-medium text-[10px]">
                                                 <option value="1" ${idea.complexity === 1 ? 'selected' : ''}>1 (Bajo)</option>
                                                 <option value="3" ${idea.complexity === 3 ? 'selected' : ''}>3 (Medio)</option>
                                                 <option value="5" ${idea.complexity === 5 ? 'selected' : ''}>5 (Alto)</option>
                                             </select>
                                         </div>
+                                        <div class="grid grid-cols-2 gap-1 pt-3">
+                                            ${status !== 'Nuevo' ? `<button onclick="updateAdminField('${idea.id}', 'status', 'Nuevo')" class="bg-white border text-slate-700 p-1 rounded font-bold text-[9px] cursor-pointer hover:bg-slate-100" title="Mover a Nuevas">📥</button>` : ''}
+                                            ${status !== 'En Desarrollo' && status !== 'Lanzado' ? `<button onclick="updateAdminField('${idea.id}', 'status', 'En Desarrollo')" class="bg-blue-50 text-blue-700 p-1 rounded font-bold text-[9px] cursor-pointer hover:bg-blue-100" title="Mover a En Desarrollo">🛠️</button>` : ''}
+                                            ${status !== 'Lanzado' ? `<button onclick="updateAdminField('${idea.id}', 'status', 'Lanzado')" class="bg-emerald-50 text-emerald-700 p-1 rounded font-bold text-[9px] cursor-pointer hover:bg-emerald-100 col-span-2">Lanzar ✅</button>` : ''}
+                                        </div>
                                     </div>
+                                    
+                                    <div class="grid grid-cols-2 gap-1">
+                                        <button type="button" onclick="triggerAdminAlert('${idea.id}', '¡La idea ha llegado a una gran cantidad de votos recomendados! Gracias por el apoyo.')" class="bg-amber-50 text-amber-800 border border-amber-200 font-bold p-1 rounded text-[9px] cursor-pointer hover:bg-amber-100">📢 Notificar Hito</button>
+                                        <button type="button" onclick="triggerAdminAlert('${idea.id}', 'El equipo de producto ha publicado una respuesta aclaratoria.')" class="bg-slate-200 text-slate-800 border border-slate-300 font-bold p-1 rounded text-[9px] cursor-pointer hover:bg-slate-300">📧 Avisar Respuesta</button>
+                                    </div>
+
                                     <div>
-                                        <label class="block text-[10px] uppercase font-bold text-slate-400 mb-1">Feedback Oficial</label>
-                                        <input type="text" value="${idea.adminComment}" onblur="updateAdmin('${idea.id}', 'comment', this.value)" placeholder="Responder oficialmente a la comunidad..." class="w-full bg-white border border-slate-200 p-2.5 rounded-lg font-medium text-slate-800 text-xs">
+                                        <label class="block text-[9px] uppercase font-bold text-slate-400 mb-0.5">Escribir Comentario Oficial</label>
+                                        <input type="text" value="${idea.adminComment}" onblur="updateAdminField('${idea.id}', 'comment', this.value)" placeholder="Escribe la postura de Alegra..." class="w-full bg-white border border-slate-200 p-1.5 rounded text-[11px] font-medium text-slate-800 focus:outline-none focus:border-[#30bbb7]">
                                     </div>
                                 </div>
                             ` : ''}
                         </div>
-                    </div>
-                `;
-            }).join('');
+                    `;
+                }).join('');
+            });
         }
     </script>
 </body>
